@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+            background-color: #c3e1ff; /* Dark background color */
+            padding: 15px 20px;
+        }
+        .navbar-brand {
+            color: #ffffff; /* White color for the brand name */
+            font-weight: bold;
+            font-size: 28px; /* Larger font size */
+            padding-left: 15px;
+        }
+        .navbar-brand:hover {
+            color: #cccccc; /* Slightly lighter color on hover */
+        }
+        .navbar-nav li a {
+            color: #ffffff; /* White color for the links */
+            font-weight: bold;
+            padding: 15px 20px;
+        }
+        .navbar-nav li a:hover {
+            color: #cccccc; /* Slightly lighter color on hover */
+        }
+        .text-dark {
+            color: #000000;
+        }
+        .book-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 450px; /* Increased height for uniformity */
+        }
+        .book-card img {
+            width: 100%;
+            height: 250px; /* Increased height for image */
+            object-fit: cover; /* Ensures image covers the space */
+        }
+        .book-card .card-body {
+            padding: 15px;
+            flex-grow: 1; /* Ensures body content fills available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+        }
+        .book-card h3, .book-card h4, .book-card p {
+            margin: 5px 0;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .row-eq-height {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .row-eq-height > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    BookHarbor
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/recommend">Recommend</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <div class="container">
+        <div class="row row-eq-height">
+            <div class="col-md-12">
+                <h1 class="text-dark" style="font-size:36px; margin-bottom: 30px;">Top 50 Books</h1>
+            </div>
+
+            {% for i in range(book_name|length) %}
+                <div class="col-md-3">
+                    <div class="book-card">
+                        <img class="card-img-top" src="{{ image[i] }}" alt="Book Image">
+                        <div class="card-body">
+                            <h3 class="text-dark">{{ book_name[i] }}</h3>
+                            <h4 class="text-dark">by {{ author[i] }}</h4>
+                            <p class="text-dark">Votes: {{ votes[i] }}</p>
+                            <p class="text-dark">Rating: {{ rating[i] }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</body>
+</html>
